@@ -103,7 +103,54 @@ ui <- fluidPage(
                            mainPanel(
                              plotOutput("Plot2")
                            ))),
-              tabPanel("Conclusion",p("xxxxx"))
+              tabPanel("Conclusion",p("After exploring the data set, we find out 
+                                      a few interesting observations:"),
+                       br(),
+                       p("Firstly, the average cost continuously increased each
+                         year for each state starting from 2013, and there's a 
+                         especially rapid increase after 2020. Secondly, the average
+                         cost for District of Columbia appers to be the highest 
+                         among the states, and the one for New York appears to be
+                         the second highest. The average cost for New Jersey appers
+                         to be the third highest, which is just a little bit higher
+                         than that for California."),
+                       br(),
+                       p("Besides the average costs comparing between the states,
+                         we can also see that among different types of schools,
+                         the private ones have the highest cost, and the public 
+                         in-state schools have the lowest cost, and is significantly
+                         lower than the other two options."),
+                       br(),
+                       p("For a broader implications of the insight, the rapid increase
+                         of the average cost between 2020 and 2021 might be due to 
+                         the COVID-19 which had a huge effect on the global economy. 
+                         However, the cost might stop increasing that fast given a
+                         improvement presenting in the condition of the pendamic, but
+                         it's highly possible that the average costs will still 
+                         increase according to previous trends illustrated by the 
+                         data set."),
+                       br(),
+                       p("Besides the trend of an increasing cost, we can also see
+                         that the four highest cost all appeared in states or cities
+                         that are highly developed, and the cost to maintain basic 
+                         life requirement are high enough according to our knowledge. 
+                         As a result, we can also conclude that the average cost of
+                         schools is also depended on where the school is located."),
+                       br(),
+                       p("For the quality of the data, we think that the quality of 
+                         this data set is highly resonable, this includes a range of 
+                         values starting from 2013 to 2021, which covers a large
+                         intervale. Also, this data set covers average costs from
+                         different types of schools in different states, so I think 
+                         this data gives us unbiased results, and I don't see any
+                         issues with potentially harming certain population groups."),
+                       br(),
+                       p("Fianlly, if the projected can be further developed, I think
+                         we can find a more detailed data set, which includes more
+                         aspects of an average cost, or we can find a data set with
+                         a longer interval, which will cover a larger range of 
+                         values, and we can make plots which might help us see
+                         a more detailed trend in the change of the average costs."))
   ))
 
 

@@ -9,4 +9,4 @@ We have built our own shiny application. The application provides the user with 
 dataset. It has five sets of pages. One page (the opening page/the landing page) displays 
 the purpose/importance of the project, the source of the data of the project and a sample of the dataset. 
 The three interactive pages display approriate charts/tables. The conclusion page displays a description ofthe notable insight 
-discoverd in our project. Here is the link to our project--https://steven1.shinyapps.io.....
+discoverd in our project. Here is the link to our project--https://cm03.shinyapps.io/INFO-201-Final-Project/?_ga=2.45508775.2046783816.1678305619-1719864854.1678140601

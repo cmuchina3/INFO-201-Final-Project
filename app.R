@@ -6,6 +6,9 @@ library(ggpmisc)
 library(ggpp)
 
 
+dataset <- read_delim("nces330_20.csv")
+Datarows <- dataset %>% 
+  select(Year, State, Type, Length, Expense, Value)
 # Define UI for application 
 ui <- fluidPage(
   tabsetPanel(type = "tabs",
@@ -69,6 +72,8 @@ ui <- fluidPage(
                                                 "West Virginia","Wisconsin",
                                                 "Wyoming"))
                          ),
+                         
+                         
                          # Show a plot of the generated distribution
                          mainPanel(
                            textOutput("total"),
@@ -103,6 +108,23 @@ ui <- fluidPage(
                            mainPanel(
                              plotOutput("Plot2")
                            ))),
+              tabPanel("Plot3",
+                       sidebarLayout(
+                         sidebarPanel(
+                           selectInput(inputId = "state",
+                                       label = "Select a State:",
+                                       choices = unique(dataset$State),
+                                       selected = "Alabama"),
+                           selectInput(inputId = "type",
+                                       label = "Select a Type of Institution:",
+                                       choices = unique(dataset$Type),
+                                       selected = "Private")
+                         ),
+                         mainPanel(
+                           plotOutput("cost_plot"),
+                         )
+                       )
+              ),
               tabPanel("Conclusion",p("After exploring the data set, we find out 
                                       a few interesting observations:"),
                        br(),
@@ -145,7 +167,7 @@ ui <- fluidPage(
                          this data gives us unbiased results, and I don't see any
                          issues with potentially harming certain population groups."),
                        br(),
-                       p("Fianlly, if the projected can be further developed, I think
+                       p("Finally, if the projected can be further developed, I think
                          we can find a more detailed data set, which includes more
                          aspects of an average cost, or we can find a data set with
                          a longer interval, which will cover a larger range of 
@@ -154,12 +176,24 @@ ui <- fluidPage(
   ))
 
 
-dataset <- read.csv("./nces330_20.csv", header = TRUE)
+##dataset <- read.csv("./nces330_20.csv", header = TRUE)
 
 # Define server logic required
 server <- function(input, output) {
   
   output$table1 <- renderTable(head(dataset[!duplicated(dataset$State),]))
+  
+  output$cost_plot <- renderPlot({
+    filtered_data <- dataset %>% 
+      filter(State == input$state, Type == input$type)
+    ggplot(filtered_data, aes(x = Length, y = Value, fill = Expense)) +
+      geom_col(position = "dodge") +
+      ggtitle(paste0("Average Cost of Education in ", input$state, " (", input$type, ")")) +
+      xlab("Length of Program") +
+      ylab("Average Cost (USD)") +
+      scale_fill_manual(values = c("#619CFF", "#FF619C")) +
+      theme_minimal()
+  })
   
   output$Plot <- renderPlot({
     data3 <- dataset %>% filter(State %in% input$variable)
